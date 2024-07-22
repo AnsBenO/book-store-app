@@ -1,6 +1,8 @@
 package com.ansbeno.books_service.com.ansbeno.books_service.domain.book;
 
 import static org.assertj.core.api.Assertions.assertThat;
+
+import java.math.BigDecimal;
 import java.util.List;
 
 import com.ansbeno.books_service.entities.BookEntity;
@@ -22,5 +24,19 @@ class BookRepositoryTest {
       void shouldGetAllBooks() {
             List<BookEntity> books = bookRepository.findAll();
             assertThat(books).hasSize(15);
+      }
+
+      @Test
+      void shouldGetBookByCode() {
+            BookEntity book = bookRepository.findByCode("B100").orElseThrow();
+            assertThat(book.getCode()).isEqualTo("B100");
+            assertThat(book.getName()).isEqualTo("The Hunger Games");
+            assertThat(book.getDescription()).isEqualTo("Winning will make you famous. Losing means certain death...");
+            assertThat(book.getPrice()).isEqualTo(new BigDecimal("34.0"));
+      }
+
+      @Test
+      void shouldReturnEmptyWhenBookCodeNotExists() {
+            assertThat(bookRepository.findByCode("invalid_book_code")).isEmpty();
       }
 }

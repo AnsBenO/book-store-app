@@ -40,33 +40,25 @@ class BookController {
       }
 
       @GetMapping("/{code}")
-      ResponseEntity<BookDto> getBookByCode(@PathVariable String code) {
-            try {
-                  BookDto book = bookService.findByCode(code);
-                  return new ResponseEntity<>(book, HttpStatus.OK);
-            } catch (NotFoundException e) {
-                  return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-            }
+      ResponseEntity<BookDto> getBookByCode(@PathVariable String code) throws NotFoundException {
+            BookDto book = bookService.findByCode(code);
+            return new ResponseEntity<>(book, HttpStatus.OK);
+
       }
 
       @GetMapping("/id/{id}")
-      ResponseEntity<BookDto> getBookById(@PathVariable Long id) {
-            try {
-                  BookDto book = bookService.findById(id);
-                  return new ResponseEntity<>(book, HttpStatus.OK);
-            } catch (NotFoundException e) {
-                  return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-            }
+      ResponseEntity<BookDto> getBookById(@PathVariable Long id) throws NotFoundException {
+            BookDto book = bookService.findById(id);
+            return new ResponseEntity<>(book, HttpStatus.OK);
+
       }
 
       @PutMapping("/{code}")
-      ResponseEntity<BookDto> updateBook(@PathVariable String code, @Valid @RequestBody BookDto bookDto) {
-            try {
-                  bookService.update(bookDto);
-                  return new ResponseEntity<>(bookDto, HttpStatus.OK);
-            } catch (NotFoundException e) {
-                  return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-            }
+      ResponseEntity<BookDto> updateBook(@PathVariable String code, @Valid @RequestBody BookDto bookDto)
+                  throws NotFoundException {
+            bookService.update(bookDto);
+            return new ResponseEntity<>(bookDto, HttpStatus.OK);
+
       }
 
       @DeleteMapping("/{code}")
