@@ -16,6 +16,17 @@
 			"mainClass": "com.ansbeno.books_service.TestBooksServiceApplication",
 			"projectName": "books-service",
 			"args": "",
+			"envFile": "${workspaceFolder}/.env",
+			"vmArgs": " -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=56154 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dspring.jmx.enabled=true -Djava.rmi.server.hostname=localhost -Dspring.application.admin.enabled=true -Dspring.boot.project.name=books-service"
+		},
+		{
+			"type": "java",
+			"name": "Spring Boot-BooksServiceApplication<books-service>",
+			"request": "launch",
+			"cwd": "${workspaceFolder}",
+			"mainClass": "com.ansbeno.books_service.BooksServiceApplication",
+			"projectName": "books-service",
+			"args": "",
 			"envFile": "${workspaceFolder}/.env"
 		}
 	]
