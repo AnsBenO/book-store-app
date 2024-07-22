@@ -49,7 +49,7 @@ class BookControllerTest extends AbstractIntegrationTest {
             assertThat(book.getCode(), is("P100"));
             assertThat(book.getName(), is("The Hunger Games"));
             assertThat(book.getDescription(), is("Winning will make you famous. Losing means certain death..."));
-            assertThat(book.getPrice(), is(new BigDecimal("34.0")));
+            assertThat(book.getPrice(), comparesEqualTo(new BigDecimal("34.0")));
       }
 
       @Test
