@@ -33,6 +33,14 @@
 	<dependencies>
 
 		<dependency>
+			<groupId>org.javassist</groupId>
+			<artifactId>javassist</artifactId>
+			<version>3.30.2-GA</version>
+			<type>jar</type>
+		</dependency>
+
+
+		<dependency>
 			<groupId>io.rest-assured</groupId>
 			<artifactId>rest-assured</artifactId>
 			<version>5.5.0</version>
