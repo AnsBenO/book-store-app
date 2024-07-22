@@ -6,6 +6,7 @@ class BooksServiceApplicationTests extends AbstractIntegrationTest {
 
 	@Test
 	void contextLoads() {
+		// empty method
 	}
 
 }
