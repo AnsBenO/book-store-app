@@ -28,11 +28,11 @@ class BookRepositoryTest {
 
       @Test
       void shouldGetBookByCode() {
-            BookEntity book = bookRepository.findByCode("B100").orElseThrow();
-            assertThat(book.getCode()).isEqualTo("B100");
+            BookEntity book = bookRepository.findByCode("P100").orElseThrow();
+            assertThat(book.getCode()).isEqualTo("P100");
             assertThat(book.getName()).isEqualTo("The Hunger Games");
             assertThat(book.getDescription()).isEqualTo("Winning will make you famous. Losing means certain death...");
-            assertThat(book.getPrice()).isEqualTo(new BigDecimal("34.0"));
+            assertThat(book.getPrice().stripTrailingZeros()).isEqualTo(new BigDecimal("34.0").stripTrailingZeros());
       }
 
       @Test
