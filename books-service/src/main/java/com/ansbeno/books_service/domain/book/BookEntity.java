@@ -1,4 +1,4 @@
-package com.ansbeno.books_service.entities;
+package com.ansbeno.books_service.domain.book;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -24,7 +24,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @Entity
 @Table(name = "books")
-public class BookEntity {
+class BookEntity {
   @Id
   @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "book_id_generator")
   @SequenceGenerator(name = "book_id_generator", sequenceName = "book_id_seq")

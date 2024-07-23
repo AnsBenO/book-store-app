@@ -12,13 +12,13 @@ import org.springframework.web.context.request.WebRequest;
 import javassist.NotFoundException;
 
 @ControllerAdvice
-public class GlobalExceptionHandler {
+class GlobalExceptionHandler {
       private static final URI NOT_FOUND_TYPE = URI.create("https://api.bookstore.com/errors/not-found");
       private static final URI ISE_FOUND_TYPE = URI.create("https://api.bookstore.com/errors/server-error");
       private static final String SERVICE_NAME = "books-service";
 
       @ExceptionHandler(NotFoundException.class)
-      public ProblemDetail handleNotFoundException(NotFoundException ex, WebRequest request) {
+      ProblemDetail handleNotFoundException(NotFoundException ex, WebRequest request) {
             ProblemDetail problemDetail = ProblemDetail.forStatusAndDetail(HttpStatus.NOT_FOUND, ex.getMessage());
             problemDetail.setTitle("Book Not Found");
             problemDetail.setType(NOT_FOUND_TYPE);

@@ -12,8 +12,6 @@ import org.springframework.stereotype.Service;
 import com.ansbeno.books_service.ApplicationProperties;
 import com.ansbeno.books_service.dto.BookDto;
 import com.ansbeno.books_service.dto.PagedResultDto;
-import com.ansbeno.books_service.entities.BookEntity;
-import com.ansbeno.books_service.mappers.BookMapper;
 
 import jakarta.transaction.Transactional;
 import javassist.NotFoundException;
@@ -22,7 +20,7 @@ import lombok.RequiredArgsConstructor;
 @Service
 @RequiredArgsConstructor
 @Transactional
-public class BookServiceImpl implements BookService {
+class BookServiceImpl implements BookService {
       private final BookRepository bookRepository;
       private final ApplicationProperties properties;
 
