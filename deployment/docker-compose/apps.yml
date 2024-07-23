@@ -1,0 +1,23 @@
+name: "book-store-app"
+services:
+    books-service:
+        image: ansbeno/bookstore-books-service
+        container_name: books-service
+        environment:
+            - SPRING_PROFILES_ACTIVE=docker
+            - DB_URL=jdbc:postgresql://books-db:5432/postgres
+            - DB_USERNAME=postgres
+            - DB_PASSWORD=postgres
+            # - SWAGGER_API_GATEWAY_URL=http://api-gateway:8989/books
+            # - MANAGEMENT_TRACING_ENABLED=true
+            # - MANAGEMENT_ZIPKIN_TRACING_ENDPOINT=http://tempo:9411
+        ports:
+            - "8081:8081"
+        restart: unless-stopped
+        depends_on:
+            books-db:
+                condition: service_healthy
+        deploy:
+            resources:
+                limits:
+                    memory: 700m
