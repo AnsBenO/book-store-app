@@ -22,7 +22,7 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
       @Query("""
                         SELECT NEW com.ansbeno.order_service.domain.order.OrderSummary(o.orderNumber, o.status)
                         FROM Order o
-                        WHERE o.userName = :username
+                        WHERE o.username = :username
                   """)
       List<OrderSummary> findByUsername(String username);
 

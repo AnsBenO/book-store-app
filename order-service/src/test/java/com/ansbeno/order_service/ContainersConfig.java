@@ -9,9 +9,6 @@ import org.testcontainers.containers.RabbitMQContainer;
 
 @TestConfiguration(proxyBeanMethods = false)
 public class ContainersConfig {
-      // static String KEYCLOAK_IMAGE = "quay.io/keycloak/keycloak:24.0.2";
-      // static String realmImportFile = "/test-bookstore-realm.json";
-      // static String realmName = "bookstore";
 
       @Bean
       @ServiceConnection

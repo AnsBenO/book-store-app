@@ -28,6 +28,16 @@
 			"projectName": "books-service",
 			"args": "",
 			"envFile": "${workspaceFolder}/.env"
+		},
+		{
+			"type": "java",
+			"name": "Spring Boot-TestOrderServiceApplication<order-service>",
+			"request": "launch",
+			"cwd": "${workspaceFolder}",
+			"mainClass": "com.ansbeno.order_service.TestOrderServiceApplication",
+			"projectName": "order-service",
+			"args": "",
+			"envFile": "${workspaceFolder}/.env"
 		}
 	]
 }
