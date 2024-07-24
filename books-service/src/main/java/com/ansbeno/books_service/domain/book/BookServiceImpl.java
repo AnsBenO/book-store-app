@@ -8,12 +8,12 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.ansbeno.books_service.ApplicationProperties;
 import com.ansbeno.books_service.dto.BookDto;
 import com.ansbeno.books_service.dto.PagedResultDto;
 
-import jakarta.transaction.Transactional;
 import javassist.NotFoundException;
 import lombok.RequiredArgsConstructor;
 

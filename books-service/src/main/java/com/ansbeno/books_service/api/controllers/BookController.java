@@ -19,16 +19,18 @@ import com.ansbeno.books_service.dto.PagedResultDto;
 import jakarta.validation.Valid;
 import javassist.NotFoundException;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/api/books")
+@Slf4j
 class BookController {
       private final BookService bookService;
 
       @GetMapping
       ResponseEntity<PagedResultDto<BookDto>> getAllBooks(
-                  @RequestParam(name = "page", defaultValue = "1") int page) {
+                  @RequestParam(defaultValue = "1") int page) {
             PagedResultDto<BookDto> books = bookService.findAll(page);
             return new ResponseEntity<>(books, HttpStatus.OK);
       }
@@ -42,6 +44,7 @@ class BookController {
       @GetMapping("/{code}")
       ResponseEntity<BookDto> getBookByCode(@PathVariable String code) throws NotFoundException {
             BookDto book = bookService.findByCode(code);
+            log.info("Get book: {}", code);
             return new ResponseEntity<>(book, HttpStatus.OK);
 
       }
@@ -49,6 +52,7 @@ class BookController {
       @GetMapping("/id/{id}")
       ResponseEntity<BookDto> getBookById(@PathVariable Long id) throws NotFoundException {
             BookDto book = bookService.findById(id);
+            log.info("Get book by id: {}", id);
             return new ResponseEntity<>(book, HttpStatus.OK);
 
       }
@@ -57,6 +61,7 @@ class BookController {
       ResponseEntity<BookDto> updateBook(@PathVariable String code, @Valid @RequestBody BookDto bookDto)
                   throws NotFoundException {
             bookService.update(bookDto);
+            log.info("Update book: {}", code);
             return new ResponseEntity<>(bookDto, HttpStatus.OK);
 
       }
@@ -64,6 +69,7 @@ class BookController {
       @DeleteMapping("/{code}")
       ResponseEntity<Void> deleteBookByCode(@PathVariable String code) {
             bookService.deleteByCode(code);
+            log.info("Delete order: {}", code);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
       }
 }

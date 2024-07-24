@@ -19,6 +19,7 @@
       <modules>
             <module>books-service</module>
             <module>frontend</module>
+            <module>order-service</module>
       </modules>
 
       <build>

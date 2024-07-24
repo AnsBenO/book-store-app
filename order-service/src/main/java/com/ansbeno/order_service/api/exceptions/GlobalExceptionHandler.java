@@ -1,4 +1,4 @@
-package com.ansbeno.books_service.api.exception;
+package com.ansbeno.order_service.api.exceptions;
 
 import java.net.URI;
 import java.time.Instant;
@@ -15,7 +15,7 @@ import javassist.NotFoundException;
 class GlobalExceptionHandler {
       private static final URI NOT_FOUND_TYPE = URI.create("https://api.bookstore.com/errors/not-found");
       private static final URI ISE_FOUND_TYPE = URI.create("https://api.bookstore.com/errors/server-error");
-      private static final String SERVICE_NAME = "books-service";
+      private static final String SERVICE_NAME = "order-service";
 
       @ExceptionHandler(NotFoundException.class)
       ProblemDetail handleNotFoundException(NotFoundException ex, WebRequest request) {
