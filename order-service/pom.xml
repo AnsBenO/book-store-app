@@ -29,6 +29,7 @@
 	</scm>
 	<properties>
 		<java.version>21</java.version>
+		<dockerImageName>ansbeno/bookstore-${project.artifactId}</dockerImageName>
 	</properties>
 	<dependencies>
 
@@ -242,6 +243,18 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
+					<layers>
+						<enabled>true</enabled>
+					</layers>
+					<image>
+						<name>${dockerImageName}</name>
+						<env>
+							<BP_JVM_VERSION>21</BP_JVM_VERSION>
+						</env>
+						<builder>paketobuildpacks/builder-jammy-tiny:latest
+						</builder>
+
+					</image>
 					<excludes>
 						<exclude>
 							<groupId>org.projectlombok</groupId>
