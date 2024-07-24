@@ -9,7 +9,6 @@ import org.testcontainers.containers.RabbitMQContainer;
 
 @TestConfiguration(proxyBeanMethods = false)
 public class ContainersConfig {
-
       @Bean
       @ServiceConnection
       PostgreSQLContainer<?> postgresContainer() {
