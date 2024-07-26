@@ -6,7 +6,7 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface OrderRepository extends JpaRepository<Order, Long> {
+interface OrderRepository extends JpaRepository<Order, Long> {
 
       List<Order> findByStatus(OrderStatus status);
 

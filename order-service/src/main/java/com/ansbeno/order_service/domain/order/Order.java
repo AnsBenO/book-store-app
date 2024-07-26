@@ -20,11 +20,15 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Builder;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
-@Data
+@Getter
+@Setter
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "orders")
@@ -67,6 +71,7 @@ public class Order {
 
       private String comments;
 
+      @Builder.Default
       @Column(name = "created_at", nullable = false, updatable = false)
       private LocalDateTime createdAt = LocalDateTime.now();
 
