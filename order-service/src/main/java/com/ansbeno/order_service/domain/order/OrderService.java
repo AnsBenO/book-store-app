@@ -17,7 +17,4 @@ public interface OrderService {
 
       void processNewOrders();
 
-      void process(Order order);
-
-      boolean canBeDelivered(Order order);
 }

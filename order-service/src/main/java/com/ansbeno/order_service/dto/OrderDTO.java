@@ -6,12 +6,14 @@ import java.util.Set;
 import com.ansbeno.order_service.domain.order.Address;
 import com.ansbeno.order_service.domain.order.Customer;
 import com.ansbeno.order_service.domain.order.OrderStatus;
-import com.ansbeno.order_service.domain.orderitem.OrderItem;
 
+import lombok.Builder;
+
+@Builder
 public record OrderDTO(
             String orderNumber,
             String user,
-            Set<OrderItem> items,
+            Set<OrderItemDTO> items,
             Customer customer,
             Address deliveryAddress,
             OrderStatus status,

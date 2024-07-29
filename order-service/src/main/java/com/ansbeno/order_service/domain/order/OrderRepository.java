@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.Query;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 
 interface OrderRepository extends JpaRepository<Order, Long> {
@@ -13,8 +14,7 @@ interface OrderRepository extends JpaRepository<Order, Long> {
       Optional<Order> findByOrderNumber(String orderNumber);
 
       default void updateOrderStatus(String orderNumber, OrderStatus status) {
-            Order order = this.findByOrderNumber(orderNumber).orElseThrow(); // java.util.NoSuchElementException.NoSuchElementException
-
+            Order order = this.findByOrderNumber(orderNumber).orElseThrow();
             order.setStatus(status);
             this.save(order);
       }

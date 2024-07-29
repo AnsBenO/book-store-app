@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.2.8</version>
+		<version>3.3.2</version>
 		<relativePath/>
 		<!-- lookup parent from repository -->
 	</parent>
@@ -36,6 +36,7 @@
 		<wiremock.version>3.5.4</wiremock.version>
 		<wiremock-testcontainers.version>1.0-alpha-13</wiremock-testcontainers.version>
 		<instancio.version>4.5.1</instancio.version>
+		<flyway-database-postgresql.version>10.16.0</flyway-database-postgresql.version>
 	</properties>
 	<dependencies>
 		<!-- 
@@ -53,11 +54,6 @@
 			<artifactId>spring-rabbit-stream</artifactId>
 		</dependency>
 
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
-		</dependency>
 		<dependency>
 			<groupId>org.springframework.amqp</groupId>
 			<artifactId>spring-rabbit-test</artifactId>
@@ -105,7 +101,7 @@
 		<dependency>
 			<groupId>org.flywaydb</groupId>
 			<artifactId>flyway-database-postgresql</artifactId>
-			<version>10.16.0</version>
+			<version>${flyway-database-postgresql.version}</version>
 		</dependency>
 		<!-- <dependency>
 			<groupId>org.springframework.boot</groupId>

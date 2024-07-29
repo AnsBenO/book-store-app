@@ -16,11 +16,11 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
+import com.ansbeno.order_service.domain.exceptions.OrderNotFoundException;
+
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ProblemDetail;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-
-import javassist.NotFoundException;
 
 @ControllerAdvice
 class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
@@ -29,8 +29,8 @@ class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
       private static final String SERVICE_NAME = "order-service";
       private static final URI BAD_REQUEST_TYPE = URI.create("https://api.bookstore.com/errors/bad-request");
 
-      @ExceptionHandler(NotFoundException.class)
-      ProblemDetail handleNotFoundException(NotFoundException ex, WebRequest request) {
+      @ExceptionHandler(OrderNotFoundException.class)
+      ProblemDetail handleNotFoundException(OrderNotFoundException ex, WebRequest request) {
             ProblemDetail problemDetail = ProblemDetail.forStatusAndDetail(HttpStatus.NOT_FOUND, ex.getMessage());
             problemDetail.setTitle("Book Not Found");
             problemDetail.setType(NOT_FOUND_TYPE);

@@ -19,4 +19,14 @@ public class OrderItemMapper {
                         .quantity(orderItem.quantity()).build();
 
       }
+
+      public static OrderItemDTO mapToOrderItemDTO(OrderItem orderItem) {
+
+            return OrderItemDTO.builder()
+                        .code(orderItem.getCode())
+                        .name(orderItem.getName())
+                        .price(orderItem.getPrice())
+                        .quantity(orderItem.getQuantity()).build();
+
+      }
 }

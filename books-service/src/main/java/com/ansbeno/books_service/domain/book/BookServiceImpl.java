@@ -33,7 +33,7 @@ class BookServiceImpl implements BookService {
             return PagedResultDto.<BookDto>builder()
                         .data(booksPage.toList()
                                     .stream()
-                                    .map(BookMapper::mapToBookDto).collect(Collectors.toList()))
+                                    .map(BookMapper::mapToBookDto).toList())
                         .totalElements(booksPage.getTotalElements())
                         .pageNumber(pageNumber + 1)
                         .totalPages(booksPage.getTotalPages())

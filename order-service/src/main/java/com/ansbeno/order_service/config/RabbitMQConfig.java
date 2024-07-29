@@ -40,6 +40,19 @@ class RabbitMQConfig {
       }
 
       @Bean
+      Queue deliveryInProgressQueue() {
+            return QueueBuilder.durable(properties.deliveryInProgressQueue()).build();
+      }
+
+      @Bean
+      Binding deliveryInProgressQueueBinding() {
+            // ? Bind 'deliveryInProgressQueue' to the exchange using the same name as the
+            // ? routing key
+            return BindingBuilder.bind(deliveryInProgressQueue()).to(exchange())
+                        .with(properties.deliveryInProgressQueue());
+      }
+
+      @Bean
       Queue deliveredOrdersQueue() {
             return QueueBuilder.durable(properties.deliveredOrdersQueue()).build();
       }
