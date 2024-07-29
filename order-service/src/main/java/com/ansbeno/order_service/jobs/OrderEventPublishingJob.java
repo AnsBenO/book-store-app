@@ -13,7 +13,7 @@ import net.javacrumbs.shedlock.spring.annotation.SchedulerLock;
 @RequiredArgsConstructor
 @Slf4j
 @Component
-public class OrderEventPublishimgJob {
+public class OrderEventPublishingJob {
       private final OrderEventService orderEventService;
 
       @Scheduled(cron = "${orders.publish-order-events-job-cron}")

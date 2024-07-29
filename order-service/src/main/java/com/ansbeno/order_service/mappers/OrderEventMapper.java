@@ -32,7 +32,6 @@ public class OrderEventMapper {
       }
 
       public static OrderEvent toOrderEvent(OrderEventDTO event) throws JsonProcessingException {
-            // event.setPayload(toJsonPayload(event));
 
             return OrderEvent.builder()
                         .eventId(event.getEventId())
@@ -100,10 +99,6 @@ public class OrderEventMapper {
                         .map(item -> new OrderItemDTO(item.getCode(), item.getName(), item.getPrice(),
                                     item.getQuantity()))
                         .collect(Collectors.toSet());
-      }
-
-      private static String toJsonPayload(OrderEventDTO object) throws JsonProcessingException {
-            return objectMapper.writeValueAsString(object);
       }
 
 }

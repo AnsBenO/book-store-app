@@ -18,11 +18,14 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 
 import com.ansbeno.order_service.domain.exceptions.OrderNotFoundException;
 
+import lombok.extern.slf4j.Slf4j;
+
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ProblemDetail;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 @ControllerAdvice
+@Slf4j
 class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
       private static final URI NOT_FOUND_TYPE = URI.create("https://api.bookstore.com/errors/not-found");
       private static final URI ISE_FOUND_TYPE = URI.create("https://api.bookstore.com/errors/server-error");
@@ -70,6 +73,8 @@ class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
             problemDetail.setProperty("service", SERVICE_NAME);
             problemDetail.setProperty("error_category", "Generic");
             problemDetail.setProperty("timestamp", Instant.now());
+
+            log.info("Bad Request", ex.getMessage());
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(problemDetail);
       }
 }
