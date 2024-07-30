@@ -1,7 +1,6 @@
 package com.ansbeno.books_service.domain.book;
 
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;

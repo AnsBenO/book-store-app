@@ -1,7 +1,6 @@
 package com.ansbeno.order_service.domain.order;
 
 import jakarta.persistence.Embeddable;
-import jakarta.validation.Valid;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 
