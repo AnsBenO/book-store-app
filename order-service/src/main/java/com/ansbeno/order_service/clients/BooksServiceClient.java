@@ -30,7 +30,7 @@ public class BooksServiceClient {
       }
 
       Optional<BookDTO> getBookByCodeFallback(String code, Throwable t) {
-            log.info("catalog-service get book by code fallback: code:{}, Error: {} ", code, t.getMessage());
+            log.info("books-service get book by code fallback: code:{}, Error: {} ", code, t.getMessage());
             return Optional.empty();
       }
 }

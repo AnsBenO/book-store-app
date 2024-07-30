@@ -24,7 +24,8 @@ class OrderValidator {
             Set<OrderItemDTO> items = request.items();
             for (OrderItemDTO item : items) {
                   BookDTO book = client.getBookByCode(item.code())
-                              .orElseThrow(() -> new InvalidOrderException("Invalid Book code:" + item.code()));
+                              .orElseThrow(() -> new RuntimeException(
+                                          "Error encountered while fetching Book with code:" + item.code()));
                   if (item.price().compareTo(book.getPrice()) != 0) {
                         log.error(
                                     "Book price not matching. Actual price:{}, received price:{}",
