@@ -2,7 +2,7 @@ version: "3"
 
 vars:
     GOOS: "{{default OS .GOOS}}"
-    MVNW: '{{if eq .GOOS "windows"}}mvnw.cmd{{else}}./mvnw{{end}}'
+    MVNW: '{{if eq .GOOS "windows"}}cmd /c mvnw.cmd{{else}}./mvnw{{end}}'
     DC_DIR: "deployment/docker-compose"
     INFRA_DC_FILE: "{{.DC_DIR}}/infra.yml"
     APPS_DC_FILE: "{{.DC_DIR}}/apps.yml"
@@ -19,9 +19,9 @@ tasks:
 
     build:
         cmds:
-            - "cmd /c {{.MVNW}} -pl books-service spring-boot:build-image -DskipTests"
-            - "cmd /c {{.MVNW}} -pl order-service spring-boot:build-image -DskipTests"
-            # - "{{.MVNW}} -pl notification-service spring-boot:build-image -DskipTests"
+            - "{{.MVNW}} -pl books-service spring-boot:build-image -DskipTests"
+            - "{{.MVNW}} -pl order-service spring-boot:build-image -DskipTests"
+            - "{{.MVNW}} -pl notification-service spring-boot:build-image -DskipTests"
             # - "{{.MVNW}} -pl api-gateway spring-boot:build-image -DskipTests"
             # - "{{.MVNW}} -pl bookstore-webapp spring-boot:build-image -DskipTests"
 

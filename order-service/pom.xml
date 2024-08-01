@@ -232,7 +232,7 @@
 						<env>
 							<BP_JVM_VERSION>21</BP_JVM_VERSION>
 						</env>
-						<builder>paketobuildpacks/builder-jammy-tiny:latest
+						<builder>dashaun/builder:tiny
 						</builder>
 					</image>
 					<excludes>
