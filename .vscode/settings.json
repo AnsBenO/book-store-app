@@ -3,5 +3,5 @@
 	"java.dependency.packagePresentation": "hierarchical",
 	"java.dependency.syncWithFolderExplorer": true,
 	"java.compile.nullAnalysis.mode": "automatic",
-	"cSpell.words": ["hamcrest"]
+	"cSpell.words": ["Dskip", "hamcrest", "MVNW"]
 }
