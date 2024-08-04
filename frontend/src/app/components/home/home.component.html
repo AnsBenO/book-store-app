@@ -1,0 +1,32 @@
+<div class="container mx-auto px-12 py-8">
+      <!-- Banner Section -->
+      <div class=" bg-cyan-100 p-12 rounded-lg relative overflow-hidden h-80">
+            <div class="py-10 w-1/2">
+                  <h1 class="text-night text-4xl font-bold mb-4">Get your favorite books with the best price</h1>
+                  <button class="bg-night text-white px-4 py-2 rounded">Explore Now</button>
+            </div>
+            <img src="Books.png" alt="Books" class="absolute -bottom-4 right-6 w-96" />
+      </div>
+
+
+      <!-- Products Section -->
+      <div class="mt-4">
+            <h2 class="text-night text-2xl font-bold mb-4">Books For You!</h2>
+
+            <div class="books">
+                  @for(book of pageState.data(); track $index){
+                  <div class="book">
+                        <img src="{{book.imageUrl}}" alt="{{book.name}}" class="w-full rounded" />
+                        <h3 class="text-night text-xl font-semibold mt-4">{{book.name}}</h3>
+                        <p class="text-cool-gray">${{book.price}}</p>
+                        <span (click)="openModal(book)">view details</span>
+                        <button class="bg-aquamarine text-night px-4 py-2 rounded mt-4">Add to Cart</button>
+                  </div>
+                  }
+            </div>
+      </div>
+</div>
+
+@if (selectedBook) {
+<app-book-detail [book]="selectedBook" (onClose)="closeModal()" />
+}

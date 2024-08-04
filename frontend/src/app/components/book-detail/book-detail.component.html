@@ -1,0 +1,16 @@
+<div class="modal-container">
+      <div class="modal-header">
+            <span (click)="closeModal()" class="close">&times;</span>
+      </div>
+      <div class="modal-body">
+            <div class="book-cover">
+                  <img [src]="book.imageUrl" alt="{{book.name}}" />
+            </div>
+            <div class="book-details">
+                  <h1>{{book.name}}</h1>
+                  <p>${{book.price}}</p>
+                  <p>{{book.description}}</p>
+                  <button class="add-to-cart">Add to Cart</button>
+            </div>
+      </div>
+</div>
