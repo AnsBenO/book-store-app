@@ -1,3 +1,13 @@
 :host {
   display: block;
 }
+
+nav,
+nav .drop-down {
+  @apply bg-slate-50 bg-opacity-80;
+}
+
+nav:hover,
+nav:hover .drop-down {
+  @apply bg-opacity-100;
+}

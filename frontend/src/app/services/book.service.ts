@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { BooksPage } from '../types/books-page.type';
-import { BOOKS_API_URL } from '../app';
+import { environment } from '../environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -9,7 +9,13 @@ import { BOOKS_API_URL } from '../app';
 export class BookService {
   http = inject(HttpClient);
 
-  getAllBooks() {
-    return this.http.get<BooksPage>(`${BOOKS_API_URL}/books`);
+  getAllBooks(page?: number) {
+    console.log(page);
+
+    return page
+      ? this.http.get<BooksPage>(
+          `${environment.booksApiUrl}/books?page=${page}`
+        )
+      : this.http.get<BooksPage>(`${environment.booksApiUrl}/books`);
   }
 }

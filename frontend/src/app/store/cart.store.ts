@@ -21,6 +21,7 @@ const initialState: TCartState = {
 };
 
 export const CartStore = signalStore(
+  { providedIn: 'root' },
   withState<TCartState>(initialState),
   withComputed((store) => ({
     itemsCount: computed(() => store.items().length),
@@ -30,9 +31,16 @@ export const CartStore = signalStore(
   })),
   withMethods((store, orderService = inject(OrderService)) => ({
     addItem(newItem: Item) {
-      const updatedItems = [...store.items(), newItem];
-      patchState(store, { items: updatedItems });
-      localStorage.setItem('cartItems', JSON.stringify(updatedItems));
+      const currentItems = store.items();
+      const existingItemIndex = currentItems.findIndex(
+        (item) => item.code === newItem.code
+      );
+
+      if (existingItemIndex === -1) {
+        const updatedItems = [...currentItems, newItem];
+        patchState(store, { items: updatedItems });
+      }
+      localStorage.setItem('cartItems', JSON.stringify(store.items()));
     },
     removeItem(code: string) {
       const updatedItems = store.items().filter((item) => item.code !== code);
@@ -41,7 +49,29 @@ export const CartStore = signalStore(
     },
     removeAll() {
       patchState(store, { items: [] });
+      localStorage.setItem('cartItems', JSON.stringify([]));
     },
+    increaseQuantity(code: string) {
+      const updatedItems = store
+        .items()
+        .map((item) =>
+          item.code === code ? { ...item, quantity: item.quantity + 1 } : item
+        );
+      patchState(store, { items: updatedItems });
+      localStorage.setItem('cartItems', JSON.stringify(updatedItems));
+    },
+    decreaseQuantity(code: string) {
+      const updatedItems = store
+        .items()
+        .map((item) =>
+          item.code === code && item.quantity > 1
+            ? { ...item, quantity: item.quantity - 1 }
+            : item
+        );
+      patchState(store, { items: updatedItems });
+      localStorage.setItem('cartItems', JSON.stringify(updatedItems));
+    },
+
     loadItems: rxMethod<void>(
       pipe(
         switchMap(() => {

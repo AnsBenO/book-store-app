@@ -14,6 +14,8 @@ import { BooksPage } from '../../types/books-page.type';
 import { patchState, signalState } from '@ngrx/signals';
 import { Book } from '../../types/book.type';
 import { BookDetailComponent } from '../book-detail/book-detail.component';
+import { CartStore } from '../../store/cart.store';
+import { Item } from '../../types/book-item.type';
 
 @Component({
   selector: 'app-home',
@@ -24,6 +26,7 @@ import { BookDetailComponent } from '../book-detail/book-detail.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomeComponent implements OnInit {
+  cartStore = inject(CartStore);
   bookService = inject(BookService);
   destroy = inject(DestroyRef);
   pageState = signalState<BooksPage>({
@@ -41,14 +44,22 @@ export class HomeComponent implements OnInit {
   selectedBook: Book | null = null;
 
   ngOnInit(): void {
-    this.getBookPage();
+    this.fetchBooks(1);
   }
 
-  private getBookPage() {
+  private fetchBooks(page: number) {
     this.bookService
-      .getAllBooks()
+      .getAllBooks(page)
       .pipe(takeUntilDestroyed(this.destroy))
-      .subscribe((page) => patchState(this.pageState, page));
+      .subscribe({
+        next: (pageData) => this.updatePageState(pageData),
+        error: (error) => console.error('Error fetching books:', error),
+      });
+  }
+
+  private updatePageState(pageData: BooksPage) {
+    const updatedBooks = [...this.pageState().data, ...pageData.data];
+    patchState(this.pageState, { ...pageData, data: updatedBooks });
   }
 
   openModal(book: Book) {
@@ -59,5 +70,22 @@ export class HomeComponent implements OnInit {
   closeModal() {
     this.showModal.set(false);
     this.selectedBook = null;
+  }
+
+  loadMore() {
+    if (this.pageState().hasNext) {
+      const nextPage = this.pageState().pageNumber + 1;
+      this.fetchBooks(nextPage);
+    }
+  }
+
+  addToCart(book: Book) {
+    const updatedItem: Item = {
+      code: book.code,
+      name: book.name,
+      price: book.price,
+      quantity: 1,
+    };
+    this.cartStore.addItem(updatedItem);
   }
 }
