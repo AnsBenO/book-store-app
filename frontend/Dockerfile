@@ -15,3 +15,5 @@ RUN ng build --configuration=production
 FROM nginx:stable-perl
 
 COPY --from=build /app/dist/frontend/browser /usr/share/nginx/html
+
+EXPOSE 80
