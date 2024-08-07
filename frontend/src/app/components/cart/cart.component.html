@@ -3,13 +3,13 @@
       <div id="cartDiv" class="relative w-full max-w-4xl bg-slate-100 rounded-lg shadow-lg overflow-hidden max-h-full"
             [ngClass]="{'fade-in':!closingCart(), 'fade-out':closingCart()}">
             <fa-icon id="closeCart" [icon]="xMarkIcon"
-                  class="absolute top-0 right-2 cursor-pointer text-2xl font-bold text-cool-gray hover:text-cool-gray-dark transition"
+                  class="absolute top-0 right-2 z-50 cursor-pointer text-2xl font-bold text-cool-gray hover:text-cool-gray-dark transition"
                   (click)="closeCart()" />
             <div
                   class="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4 overflow-y-auto min-h-96 max-h-[calc(100vh-3rem)]">
 
                   <!-- Cart Items Section -->
-                  <div class="w-full md:w-2/3 bg-slate-200 p-4  overflow-scroll">
+                  <div class="w-full md:w-2/3 bg-slate-200 p-4  overflow-scroll relative">
                         <h2 class="text-2xl font-semibold mb-4">Shopping Cart</h2>
                         <ul>
                               @for (item of cartStore.items(); track item.code) {
@@ -39,8 +39,7 @@
 
                               }
                         </ul>
-                        <a (click)="closeCart()" class="text-maya-blue cursor-pointer text-sm hover:underline">Continue
-                              Shopping</a>
+
                   </div>
 
                   <!-- Order Summary Section -->
