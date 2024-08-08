@@ -8,7 +8,7 @@ services:
             - DB_URL=jdbc:postgresql://books-db:5432/postgres
             - DB_USERNAME=postgres
             - DB_PASSWORD=postgres
-            # - SWAGGER_API_GATEWAY_URL=http://api-gateway:8989/books
+            - SWAGGER_API_GATEWAY_URL=http://api-gateway:8989/books
             # - MANAGEMENT_TRACING_ENABLED=true
             # - MANAGEMENT_ZIPKIN_TRACING_ENDPOINT=http://tempo:9411
         ports:

@@ -14,8 +14,8 @@ export class BookService {
 
     return page
       ? this.http.get<BooksPage>(
-          `${environment.booksApiUrl}/books?page=${page}`
+          `${environment.BOOKS_API_URL}/books?page=${page}`
         )
-      : this.http.get<BooksPage>(`${environment.booksApiUrl}/books`);
+      : this.http.get<BooksPage>(`${environment.BOOKS_API_URL}/books`);
   }
 }
